@@ -1,0 +1,24 @@
+//GEORGOULAS DIMOSTHENIS 4039
+//STERGIOU BASILEIOS 4300
+
+#version 330 core
+
+// Inputs from vertex shader for colors and texture
+in vec4 fragmentColor;
+in vec2 TexCoord;
+
+// For texture
+uniform sampler2D ourTexture; 
+
+// If we want to aply texture or color on Sphere
+uniform int InSignal;
+
+// Ouput data
+out vec4 color;
+
+
+void main(){
+	// Output color is texture of object's color
+	// If InSignal = 0 then color=fragmentColor else color=texture(ourTexture,TexCoord)
+	color = InSignal*(texture(ourTexture,TexCoord))+(1-InSignal)*fragmentColor;
+}
